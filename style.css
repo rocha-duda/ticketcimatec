@@ -208,98 +208,112 @@ form .generate-ticket:hover {
 
 .display-data {
   width: 90%;
-  max-width: 80%px;
+  max-width: 800px;
   padding: 1rem;
   margin: auto;
   position: relative;
   z-index: 20;
 }
-
-#display-image {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.ticket-user {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.display-data .logo {
-  margin: 0 auto 2rem auto;
-}
-
-.display-data .headings {
-  margin-bottom: 6rem;
-}
-
-.display-data .headings p {
-  padding: 0 7.5rem;
-}
-
 .display-data .ticket-container {
   background-color: antiquewhite;
-  background-image: url('img/ticket.svg');
+  background-image: url('img/ticket.svg'); 
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  aspect-ratio: 16 / 9;
-  max-width: 800px;
-  padding: 1rem;
+  width: 100%;
+  padding: 1.5rem;
   margin: auto;
   position: relative;
   border-radius: .5rem;
+  min-height: 300px;
+}
+
+.display-data .headings {
+  margin-bottom: 2rem;
+}
+
+.display-data .headings p {
+  padding: 0;
 }
 
 .display-data .ticket-container .logo {
   margin-bottom: .5rem;
-  font-size: 2.75rem;
-  font-weight: 70B;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .display-data .ticket-container .date {
-  color: chartreuse;
-  padding-left: 3.5rem;
-  margin-bottom: 4rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  padding-left: 0;
 }
 
 .display-data .ticket-container .ticket-user {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: .5rem; }
-
-  display-data .ticket-container .ticket-user img {
-    width: 65px;
-    border-radius: .75rem;
+  gap: 1rem;
+  text-align: center;
 }
 
-display-data .ticket-container .ticket-user #display-name {
-    font-size: 1.5rem;
-    font-weight: 600;
+.display-data .ticket-container .ticket-user img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
 }
 
-display-data .ticket-container .ticket-user .github-username {
+.display-data .ticket-container .ticket-user #display-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.display-data .ticket-container .ticket-user .github-username {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: .5rem;
 }
 
-.display-data .ticket-container .ticket-user .github-username img {
-  width: 20px;
+.display-data .ticket-container .ticket-number {
+  color: #333;
+  font-size: 1.25rem;
+  position: static;
+  transform: none;
+  text-align: center;
+  margin-top: 1.5rem;
 }
 
-.display-data .ticket-container .ticket-number {
-  color: var(--neutral-300);
-  font-size: 1.75rem;
-  position: absolute;
-  right: 5px;
-  top: 36%;
-  transform: rotate(90deg);
+@media (min-width: 768px) {
+  .display-data .headings p {
+    padding: 0 7.5rem;
+  }
+  
+  .display-data .ticket-container {
+    aspect-ratio: 16/9;
+    
+  }
+  
+  .display-data .ticket-container .ticket-user {
+    flex-direction: row;
+    text-align: left;
+  }
+  
+  .display-data .ticket-container .date {
+    padding-left: 3.5rem;
+    margin-bottom: 4rem;
+  }
+  
+  .display-data .ticket-container .logo {
+    font-size: 2.75rem;
+  }
+  
+  .display-data .ticket-container .ticket-number {
+    position: absolute;
+    right: 5px;
+    top: 36%;
+    transform: rotate(90deg);
+    font-size: 1.75rem;
+  }
 }
 
 @media (max-width: 540px) {

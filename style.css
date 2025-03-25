@@ -74,7 +74,13 @@ img{
   transition: all 300ms ease;
 
 }
-
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  padding: 2rem 0; 
+}
 .form-container {
   width: 90%; 
   max-width: 600px; 
@@ -344,5 +350,11 @@ display-data .ticket-container .ticket-user #display-name {
 @media (max-width: 400px){
   .form-content{
     height: 620px;
+  }
+}
+
+@media (min-width: 768px) { 
+  .center-container {
+    padding: 4rem 0; 
   }
 }

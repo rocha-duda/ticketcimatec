@@ -66,48 +66,75 @@ function validateFile(input, hint) {
 }
 
 function displayUploadedImage(file) {
-  const reader = new FileReader();
+    const reader = new FileReader();
+  
+    reader.onload = e => {
+       
+        const uploadedImage = document.getElementById('uploaded-image'); 
+        if (uploadedImage) {
+            uploadedImage.src = e.target.result;
+            uploadedImage.style.display = 'block';
+        }
+  
+        
+        const displayImage = document.getElementById('display-image');
+        displayImage.src = e.target.result;
+        displayImage.style.display = 'block';
+  
+        
+        fileActions.classList.add('show');
+        messageAction.classList.add('hide');
+    };
+  
+    reader.readAsDataURL(file);
+  }
+  
 
-  reader.onload = e => {
-      const displayImage = document.getElementById('display-image');
-      displayImage.src = e.target.result;
-      displayImage.style.display = 'block';
-      fileActions.classList.add('show');
-      messageAction.classList.add('hide');
-  };
-
-  reader.readAsDataURL(file);
+function generateTicketNumber() {
+    return `#${Math.floor(10000 + Math.random() * 90000)}`; // Gera um número entre 10000 e 99999
 }
 
 function resetUpload() {
-    fileInput.value = '';
-    uploadedImage.src = '';
-    uploadedImage.style.display = 'none';
-    messageAction.classList.remove('hide');
+    fileInput.value = ''; // Limpa o input
+    const uploadedImage = document.getElementById('uploaded-image');
+    
+    if (uploadedImage) {
+        uploadedImage.src = ''; // Remove a imagem
+        uploadedImage.style.display = 'none'; // Esconde a imagem do preview
+    }
+
+    // Esconder opções de "Alterar" e "Excluir"
     fileActions.classList.remove('show');
+    
+    // Reexibir a mensagem padrão
+    messageAction.classList.remove('hide');
     uploadHint.classList.remove('error');
     uploadHint.innerHTML = 'Carregue sua foto (JPG ou PNG, máx: 500KB).';
 }
 
+
 function storeAndDisplayFormData() {
-  formData.image = document.getElementById('display-image').src;
-  formData.name = document.getElementById('name').value.trim();
-  formData.email = document.getElementById('email').value.trim();
-  formData.githubUsername = document.getElementById('github').value.trim();
+    formData.image = document.getElementById('display-image').src;
+    formData.name = document.getElementById('name').value.trim();
+    formData.email = document.getElementById('email').value.trim();
+    formData.githubUsername = document.getElementById('github').value.trim();
+    
+    const ticketNumber = generateTicketNumber(); // Gera um número novo para cada ingresso
+  
+    document.getElementById('header-name').textContent = formData.name;
+    document.getElementById('display-name').textContent = formData.name;
+    document.getElementById('display-email').textContent = formData.email;
+    document.getElementById('display-github').textContent = formData.githubUsername;
+    document.getElementById('display-image').src = formData.image;
+    document.querySelector('.ticket-number').textContent = ticketNumber; // Atualiza o número do ingresso
+  }
 
-  document.getElementById('header-name').textContent = formData.name;
-  document.getElementById('display-name').textContent = formData.name;
-  document.getElementById('display-email').textContent = formData.email;
-  document.getElementById('display-github').textContent = formData.githubUsername;
-  document.getElementById('display-image').src = formData.image;
-}
 
-// Clique para selecionar arquivo
 dropArea.addEventListener('click', () => {
     fileInput.click();
 });
 
-// Arrastar e soltar funcionalidade
+
 dropArea.addEventListener('dragover', (e) => {
     e.preventDefault();
     dropArea.classList.add('drag-over');
